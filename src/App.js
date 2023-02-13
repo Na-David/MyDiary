@@ -7,6 +7,7 @@ import Edit from './pages/Edit';
 import Diary from './pages/Diary';
 import MyButton from './components/MyButton';
 import { type } from '@testing-library/user-event/dist/type';
+import MyHeader from './components/MyHeader';
 
 function App() {
   const env = process.env;
@@ -14,6 +15,17 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
+
+        <MyHeader 
+          headText={"APP"}
+          leftChild = {
+            <MyButton text = {"left btn"} onClick = {() => alert("left_btn clicked")} />
+          }
+          rightChild = {
+            <MyButton text = {"right btn"} onClick = {() => alert("right_btn clicked")} />
+          } />
+
+
         <h2>Hello</h2>
         
         <MyButton 
