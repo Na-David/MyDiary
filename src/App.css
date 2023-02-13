@@ -2,12 +2,32 @@
 
 body {
   background-color: #f6f6f6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Rajdhani', sans-serif;
+  font-family: 'indie flower';
+  min-height: 100vh;
+  margin: 0;
+
 }
 
-.App {
-  /* text-align: center; */
-  padding: 20px;
+@media (min-width : 650px){
+  .App {
+    width: 640px;
+  }
+}
 
-  font-family: 'Rajdhani', sans-serif;
-  font-family: 'Indie Flower', cursive;
+@media (max-width : 650px){
+  .App {
+    width: 90vw;
+  }
+}
+
+#root {
+  background-color: white;
+  box-shadow: rgba(100,100,111,0.2) 0px 7px 29px 0px;
+}
+.App {
+  min-height: 100vh;
 }
