@@ -5,6 +5,8 @@ import Home from './pages/Home'
 import New from './pages/New';
 import Edit from './pages/Edit';
 import Diary from './pages/Diary';
+import MyButton from './components/MyButton';
+import { type } from '@testing-library/user-event/dist/type';
 
 function App() {
   const env = process.env;
@@ -13,12 +15,23 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <h2>Hello</h2>
+        
+        <MyButton 
+          text={'Button'} 
+          onClick = {() => alert("Button clicked")} 
+          type = {"positive"}
+        />
 
-        <img src={process.env.PUBLIC_URL + `/assets/emotion1.png`} />
-        <img src={process.env.PUBLIC_URL + `/assets/emotion2.png`} />
-        <img src={process.env.PUBLIC_URL + `/assets/emotion3.png`} />
-        <img src={process.env.PUBLIC_URL + `/assets/emotion4.png`} />
-        <img src={process.env.PUBLIC_URL + `/assets/emotion5.png`} />
+        <MyButton 
+          text={'Button'} 
+          onClick = {() => alert("Button clicked")} 
+          type = {"negative"}
+        />
+        <MyButton 
+          text={'Button'} 
+          onClick = {() => alert("Button clicked")} 
+        />
+
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/new' element={<New />} />
