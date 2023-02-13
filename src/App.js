@@ -1,3 +1,5 @@
+import { useReducer, useRef } from 'react';
+
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
@@ -5,45 +7,53 @@ import Home from './pages/Home'
 import New from './pages/New';
 import Edit from './pages/Edit';
 import Diary from './pages/Diary';
-import MyButton from './components/MyButton';
-import { type } from '@testing-library/user-event/dist/type';
-import MyHeader from './components/MyHeader';
 
-function App() {
-  const env = process.env;
-  env.PUBLIC_URL = env.PUBLIC_URL || "";
+const reducer = (state, action) => {
+  let newState = [];
+  switch (action.type){
+    case 'INIT' : {
+      return action.data;
+    }
+    case 'CREATE' : {
+      const newItem = {
+        ...action.data
+      };
+      newState = [newItem, ...state];
+      break;
+    }
+    case 'DELETE' : {
+      newState = state.filter((it) => it.id !== action.targetId);
+      break;
+    }
+    case 'EDIT' : {
+      newState = state.map((it) => it.id === action.data.id ? {...action.data} : it)
+      break;
+    }
+    default : return state;
+  }
+  return newState;
+}
+
+const App = () => {
+
+  const [data, dispatch] = useReducer(reducer,[]);
+
+  const dataId = useRef(0);
+  //CREATE, DELETE, EDIT
+
+  const onCreate = (date, content, emotion) => {
+    dispatch({type : "CREATE", data : {
+      id : dataId.current,
+      date : new Date(date).getTime(),
+      content,
+      emotion
+    }})
+    dataId.current += 1;
+  }
+
   return (
     <BrowserRouter>
       <div className="App">
-
-        <MyHeader 
-          headText={"APP"}
-          leftChild = {
-            <MyButton text = {"left btn"} onClick = {() => alert("left_btn clicked")} />
-          }
-          rightChild = {
-            <MyButton text = {"right btn"} onClick = {() => alert("right_btn clicked")} />
-          } />
-
-
-        <h2>Hello</h2>
-        
-        <MyButton 
-          text={'Button'} 
-          onClick = {() => alert("Button clicked")} 
-          type = {"positive"}
-        />
-
-        <MyButton 
-          text={'Button'} 
-          onClick = {() => alert("Button clicked")} 
-          type = {"negative"}
-        />
-        <MyButton 
-          text={'Button'} 
-          onClick = {() => alert("Button clicked")} 
-        />
-
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/new' element={<New />} />
