@@ -1,17 +1,24 @@
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 
 import MyHeader from './../components/MyHeader';
 import MyButton from './../components/MyButton';
+import { DiaryStateContext } from "../App";
 
 const Home = () => {
 
-    const [curdate, setCurDate] = useState(new Date());
-    console.log(curdate);
+    const diaryList = useContext(DiaryStateContext);
 
-    const month = (curdate.getMonth().toLocaleString("en-US", {month : "long"}));
+    const [data, setData] = useState([]);
+
+    const [curdate, setCurDate] = useState(new Date());
     const headText = `${ curdate.getMonth() + 1 } ${curdate.getFullYear()}`;
-    console.log(headText);
-    console.log(month);
+
+    useEffect(() => {
+        const firstDay = new Date(curdate.getFullYear(), curdate.getMonth(), 1).getTime(); // first day of current Month
+        const lastDay = new Date(curdate.getFullYear(), curdate.getMonth() + 1, 0).getTime(); // last day of current Month
+    },[curdate])
+
+
 
     const increaseMonth = () => {
         setCurDate(new Date(curdate.getFullYear(), curdate.getMonth() + 1, curdate.getDate()));
