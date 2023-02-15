@@ -1,7 +1,7 @@
 import {useState} from 'react';
 
 const sortOptionList = [
-    {value : "lastest", name : "Lastest Order"},
+    {value : "latest", name : "Lastest Order"},
     {value : "oldest", name : "Oldest Order"}
 ];
 
@@ -18,8 +18,6 @@ const ControlMenu = ({value, onChange, optionList}) => {
 };
 
 const DiaryList = ({diaryList}) => {
-
-
     const [sortType, setSortType] = useState("lastest");
 
     const getProcessedDiaryList = () => {
