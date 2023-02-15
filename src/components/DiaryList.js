@@ -1,4 +1,6 @@
 import {useState} from 'react';
+import MyButton from './MyButton';
+import { useNavigate } from 'react-router-dom';
 
 const sortOptionList = [
     {value : "latest", name : "Latest Order"},
@@ -24,6 +26,7 @@ const ControlMenu = ({value, onChange, optionList}) => {
 };
 
 const DiaryList = ({diaryList}) => {
+    const navigate = useNavigate();
     const [sortType, setSortType] = useState("latest");
     const [filter, setFilter] = useState("All");
 
@@ -64,6 +67,11 @@ const DiaryList = ({diaryList}) => {
                 value={filter}
                 onChange = {setFilter}
                 optionList = {filterOptionList} 
+            />
+            <MyButton 
+                type={'positive'} 
+                text = {"New Diary"} 
+                onClick = {() => navigate('/new')} 
             />
             {getProcessedDiaryList().map((it) => (
             <div key={it.id}>{it.content} {it.emotion}</div>
