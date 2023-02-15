@@ -19,7 +19,7 @@ const Home = () => {
         const firstDay = new Date(curdate.getFullYear(), curdate.getMonth(), 1).getTime(); // first day of current Month
         const lastDay = new Date(curdate.getFullYear(), curdate.getMonth() + 1, 0).getTime(); // last day of current Month
 
-        setData(diaryList.filter((it) => firstDay <= it.date && lastDay >= it.date));
+        setData(diaryList.filter((it) => firstDay <= it.date && it.date <= lastDay));
         }},[diaryList,curdate]);
 
     const increaseMonth = () => {
@@ -28,6 +28,10 @@ const Home = () => {
     const decreaseMonth = () => {
         setCurDate(new Date(curdate.getFullYear(), curdate.getMonth() - 1, curdate.getDate()));
     }
+
+    useEffect(() => {
+        console.log(data);
+    },[data])
     
 
     return (
