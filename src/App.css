@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Rajdhani&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Michroma&family=Rajdhani&display=swap');
 
 body {
   background-color: #f6f6f6;
@@ -68,6 +68,7 @@ header {
   display: flex;
   align-items: center;
   border-bottom: 1px solid #e2e2e2;
+  font-family: 'Michroma', sans-serif;
 }
 
 header > div {
@@ -92,6 +93,7 @@ header .head_btn_left {
 
 header button {
   font-family: 'Rajdhani', sans-serif;
+  /* font-family: 'Michroma', sans-serif; */
 }
 
 /* DiaryList */
@@ -172,4 +174,20 @@ header button {
 
 .DiaryItem .emotion_img_wrapper img {
   width: 50%;
+}
+
+.DiaryItem .info_wrapper {
+  cursor: pointer;
+  flex-grow: 1;
+  margin-left: 20px;
+}
+
+.DiaryItem .diary_date {
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.DiaryItem .diary_content_preview {
+  font-size: 18px;
 }
