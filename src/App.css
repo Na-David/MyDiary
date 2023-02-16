@@ -42,7 +42,7 @@ body {
   padding: 10 10 20 20;
   font-size: 18px;
   white-space: nowrap;
-  font-family: "indie flower";
+  font-family: 'Rajdhani', sans-serif;
 }
 
 .MyButton_default {
@@ -190,4 +190,9 @@ header button {
 
 .DiaryItem .diary_content_preview {
   font-size: 18px;
+}
+
+.DiaryItem .btn_wrapper {
+  min-width: 70px;
+  width: 39px;
 }

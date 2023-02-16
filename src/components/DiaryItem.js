@@ -1,3 +1,5 @@
+import MyButton from "./MyButton";
+
 const DiaryItem = ({id, emotion, content, date}) => {
 
     const strDate = new Date(parseInt(date)).toLocaleDateString();
@@ -10,7 +12,9 @@ const DiaryItem = ({id, emotion, content, date}) => {
             <div className="diary_date">{strDate}</div>
             <div className="diary_content_preview">{content.slice(0,25)}</div>
         </div>
-        <div></div>
+        <div className="btn_wrapper">
+            <MyButton text={"Edit"}/>
+        </div>
     </div>
 }
 
