@@ -15,7 +15,7 @@ const DiaryEditor = () => {
     const navigate = useNavigate();
     
     return (
-    <div>
+    <div className="DiaryEditor">
         <MyHeader 
         headText = {"New Diary"}
         leftChild = {<MyButton text={"< Back"} onClick = {() => navigate(-1)} />}  
