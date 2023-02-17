@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import EmotionItem from "./EmotionItem";
 
@@ -40,9 +40,12 @@ const getStringDate = (date) => {
 
 const DiaryEditor = () => {
 
+    const contentRef = useRef();
+    const [content, setContent] = useState(" ");
     const [emotion, setEmotion] = useState(3);
     const [date, setDate] = useState(getStringDate(new Date()));
     const navigate = useNavigate();
+    const hint = "How was today?";
 
     const handleClickEmotion = (emotion) => {
         setEmotion(emotion);
@@ -74,6 +77,16 @@ const DiaryEditor = () => {
                     key={it.emotion_id} 
                     {...it}
                     isSelected = {it.emotion_id === emotion} />)}
+                </div>
+            </section>
+            <section>
+                <h4>Today's Diary</h4>
+                <div className="input_box text_wrapper">
+                    <textarea 
+                    ref={contentRef} 
+                    value = {content} 
+                    onChange = {(e) => setContent(e.target.value)}
+                    placeholder = {hint}/>
                 </div>
             </section>
         </div>
