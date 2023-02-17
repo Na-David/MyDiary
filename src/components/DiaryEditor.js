@@ -1,6 +1,8 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import EmotionItem from "./EmotionItem";
+import {DiaryDispatchContext} from "./../App.js"
+
 
 import MyButton from "./MyButton";
 import MyHeader from "./MyHeader";
@@ -47,8 +49,19 @@ const DiaryEditor = () => {
     const navigate = useNavigate();
     const hint = "How was today?";
 
+    const {onCreate} = useContext(DiaryDispatchContext);
     const handleClickEmotion = (emotion) => {
         setEmotion(emotion);
+    }
+
+    const handleSubmit = () => {
+        if (content.length < 1) {
+            contentRef.current.focus();
+            return;
+        } 
+
+        onCreate(date, content, emotion);
+        navigate('/' , {replace : true})
     }
     
     return (
@@ -87,6 +100,12 @@ const DiaryEditor = () => {
                     value = {content} 
                     onChange = {(e) => setContent(e.target.value)}
                     placeholder = {hint}/>
+                </div>
+            </section>
+            <section>
+                <div className="control_box">
+                    <MyButton text={"Cancel"} onClick = {() => navigate(-1)} />
+                    <MyButton text={"Done"} type = {"positive"} onClick = {handleSubmit} />
                 </div>
             </section>
         </div>
