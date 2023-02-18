@@ -1,4 +1,4 @@
-import { useState, useRef, useContext } from "react";
+import { useState, useRef, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import EmotionItem from "./EmotionItem";
 import {DiaryDispatchContext} from "./../App.js"
@@ -39,15 +39,13 @@ const getStringDate = (date) => {
     return date.toISOString().slice(0,10);
 }
 
-
-const DiaryEditor = () => {
+const DiaryEditor = (isEdit, originData) => {
 
     const contentRef = useRef();
     const [content, setContent] = useState(" ");
     const [emotion, setEmotion] = useState(3);
     const [date, setDate] = useState(getStringDate(new Date()));
     const navigate = useNavigate();
-    const hint = "How was today?";
 
     const {onCreate} = useContext(DiaryDispatchContext);
     const handleClickEmotion = (emotion) => {
@@ -55,7 +53,7 @@ const DiaryEditor = () => {
     }
 
     const handleSubmit = () => {
-        if (content.length < 1) {
+        if (content.length <= 1) {
             contentRef.current.focus();
             return;
         } 
@@ -63,6 +61,14 @@ const DiaryEditor = () => {
         onCreate(date, content, emotion);
         navigate('/' , {replace : true})
     }
+
+    useEffect(() => {
+        if (isEdit) {
+            // setDate(getStringDate(new Date(parseInt(originData.date))));
+            setEmotion(originData.emotion);
+            setContent(originData.content);
+        }
+    },[isEdit, originData]);
     
     return (
     <div className="DiaryEditor">
@@ -98,8 +104,7 @@ const DiaryEditor = () => {
                     <textarea 
                     ref={contentRef} 
                     value = {content} 
-                    onChange = {(e) => setContent(e.target.value)}
-                    placeholder = {hint}/>
+                    onChange = {(e) => setContent(e.target.value)}/>
                 </div>
             </section>
             <section>
