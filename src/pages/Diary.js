@@ -32,7 +32,6 @@ const Diary = () => {
     } else {
 
         const curEmotionDate = emotionList.find((it) => parseInt(it.emotion_id) === parseInt(data.emotion));
-        console.log(curEmotionDate);
 
         return (
         <div className='DiaryPage'>
@@ -41,8 +40,18 @@ const Diary = () => {
                 leftChild = {<MyButton text={`< Back`} onClick = {() => navigate(-1)} />}
                 rightChild = {<MyButton text = {"Edit"} onClick = {() => navigate(`/edit/${data.id}`)} />}
             />
+            <article>
+                <section>
+                    <h4> Today's Emotion</h4>
+                    <div className={['diary_img_wrapper', `diary_img_wrapper_${data.emotion}`].join(" ")}>
+                        <img src={curEmotionDate.emotion_img} />
+                        <div className='emotion_descript'>
+                            {curEmotionDate.emotion_descript}
+                        </div>
+                    </div>
+                </section>
+            </article>
         </div>
-
     )}
 
 }
