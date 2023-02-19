@@ -4,6 +4,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getStringDate } from '../util/date';
 import MyHeader from '../components/MyHeader';
 import MyButton from '../components/MyButton';
+import { emotionList } from '../util/emotion';
+
 
 const Diary = () => {
 
@@ -28,6 +30,10 @@ const Diary = () => {
     if (!data) {
         return <div className='DiaryPage'>Loading...</div>;
     } else {
+
+        const curEmotionDate = emotionList.find((it) => parseInt(it.emotion_id) === parseInt(data.emotion));
+        console.log(curEmotionDate);
+
         return (
         <div className='DiaryPage'>
             <MyHeader 
