@@ -12,17 +12,17 @@ const Edit = () => {
     const diaryList = useContext(DiaryStateContext);
 
     useEffect(() => {
-        if ( diaryList.length >= 1 ){
-            const targetDiary = diaryList.find((it) => parseInt(it.id) === parseInt(id) ); // selected id's diary information
-
+        if (diaryList.length >= 1){
+            const targetDiary = diaryList.find((it) => parseInt(it.id) === parseInt(id));
+            
             if (targetDiary) {
                 setOriginData(targetDiary);
             } else {
                 navigate('/', {replace : true});
             }
         }
+    },[id, diaryList])
 
-    },[diaryList, id])
 
     return (
     <div>
