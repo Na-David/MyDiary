@@ -47,7 +47,7 @@ const DiaryEditor = ({isEdit, originData}) => {
     const [date, setDate] = useState(getStringDate(new Date()));
     const navigate = useNavigate();
 
-    const {onCreate} = useContext(DiaryDispatchContext);
+    const {onCreate, onEdit} = useContext(DiaryDispatchContext);
     const handleClickEmotion = (emotion) => {
         setEmotion(emotion);
     }
@@ -57,14 +57,21 @@ const DiaryEditor = ({isEdit, originData}) => {
             contentRef.current.focus();
             return;
         } 
+        if (window.confirm(isEdit ? "Do you want to edit this diary?" : "Do you want to create a new diary?")) {
+            if (!isEdit) {
+                onCreate(date, content, emotion);
+            } else {
+                onEdit(originData.id, date, content, emotion);
+            }
+        }
 
-        onCreate(date, content, emotion);
+
         navigate('/' , {replace : true})
     }
 
     useEffect(() => {
         if (isEdit) {
-            // setDate(getStringDate(new Date(parseInt(originData.date))));
+            setDate(getStringDate(new Date(parseInt(originData.date))));
             setEmotion(originData.emotion);
             setContent(originData.content);
         }
@@ -73,7 +80,7 @@ const DiaryEditor = ({isEdit, originData}) => {
     return (
     <div className="DiaryEditor">
         <MyHeader 
-        headText = {"New Diary"}
+        headText = { isEdit ? "Edit Diary" : "New Diary"}
         leftChild = {<MyButton text={"< Back"} onClick = {() => navigate(-1)} />}  
         />
         <div>
