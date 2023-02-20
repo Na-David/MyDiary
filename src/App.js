@@ -1,4 +1,4 @@
-import React, { useReducer, useRef } from 'react';
+import React, { useEffect, useReducer, useRef } from 'react';
 
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -28,50 +28,21 @@ const reducer = (state, action) => {
     }
     default : return state;
   }
+
+  localStorage.setItem('diary', JSON.stringify(newState));
   return newState;
 }
 
 export const DiaryStateContext = React.createContext();
 export const DiaryDispatchContext = React.createContext();
 
-const dummyData = [
-  {
-    id: 1,
-    emotion: 1,
-    content: "Today's diary #1",
-    date: 1676371289684
-  },
-  {
-    id: 2,
-    emotion: 2,
-    content: "TTTToday's diary #2",
-    date: 1676371289685
-  },
-  {
-    id: 3,
-    emotion: 3,
-    content: "TTTToday's diary #3",
-    date: 1676371289686
-  },
-  {
-    id: 4,
-    emotion: 4,
-    content: "DDDToday's diary #4",
-    date: 1676371289687
-  },
-  {
-    id: 5,
-    emotion: 5,
-    content: "TDDDDDoday's diary #5",
-    date: 1676371289688
-  }
-]
+
 
 const App = () => {
 
-  const [data, dispatch] = useReducer(reducer,dummyData);
+  const [data, dispatch] = useReducer(reducer,[]);
 
-  const dataId = useRef(6);
+  const dataId = useRef(0);
   //CREATE, DELETE, EDIT
 
   const onCreate = (date, content, emotion) => {

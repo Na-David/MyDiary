@@ -18,7 +18,7 @@ const DiaryEditor = ({isEdit, originData}) => {
     const [date, setDate] = useState(getStringDate(new Date()));
     const navigate = useNavigate();
 
-    const {onCreate, onEdit} = useContext(DiaryDispatchContext);
+    const {onCreate, onEdit, onDelete} = useContext(DiaryDispatchContext);
     const handleClickEmotion = (emotion) => {
         setEmotion(emotion);
     }
@@ -35,9 +35,14 @@ const DiaryEditor = ({isEdit, originData}) => {
                 onEdit(originData.id, date, content, emotion);
             }
         }
-
-
         navigate('/' , {replace : true})
+    }
+
+    const handleDelete = () => {
+        if (window.confirm("Do you really want to delete this diary?")) {
+            onDelete(originData.id);
+            navigate('/', {replace : true})
+        }
     }
 
     useEffect(() => {
@@ -53,6 +58,7 @@ const DiaryEditor = ({isEdit, originData}) => {
         <MyHeader 
         headText = { isEdit ? "Edit Diary" : "New Diary"}
         leftChild = {<MyButton text={"< Back"} onClick = {() => navigate(-1)} />}  
+        rightChild = { isEdit && (<MyButton text={"Delete"} type = {'negative'} onClick = {handleDelete} />)}
         />
         <div>
             <section>
