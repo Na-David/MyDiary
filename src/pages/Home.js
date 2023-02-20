@@ -17,7 +17,7 @@ const Home = () => {
         if (diaryList.length >= 1) {
         
         const firstDay = new Date(curdate.getFullYear(), curdate.getMonth(), 1).getTime(); // first day of current Month
-        const lastDay = new Date(curdate.getFullYear(), curdate.getMonth() + 1, 0).getTime(); // last day of current Month
+        const lastDay = new Date(curdate.getFullYear(), curdate.getMonth() + 1, 0, 23,59,59).getTime(); // last day of current Month
 
         setData(diaryList.filter((it) => firstDay <= it.date && it.date <= lastDay));
         }},[diaryList,curdate]);
