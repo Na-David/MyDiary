@@ -40,8 +40,6 @@ const Home = () => {
         leftChild = {<MyButton text={' < '} onClick = {decreaseMonth} />}
         rightChild = {<MyButton text={' > '} onClick = {increaseMonth} />}
             />
-        <h1>Home</h1>
-        <p>Here is home page</p>
         <DiaryList diaryList = {data}/>
     </div>
     );
