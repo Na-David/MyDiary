@@ -1,10 +1,6 @@
 import DiaryEditor from "../components/DiaryEditor";
 import { useEffect } from "react";
 
-const getStringDate = (date) => {
-    return date.toISOString().slice(0,10);
-}
-
 const New = () => {
 
     useEffect (() => {

@@ -32,11 +32,10 @@ const Home = () => {
     useEffect(() => {
         console.log(data);
     },[data])
-    
 
     return (
     <div>
-        <MyHeader headText = {`${headText}`}
+        <MyHeader headText = {headText}
         leftChild = {<MyButton text={' < '} onClick = {decreaseMonth} />}
         rightChild = {<MyButton text={' > '} onClick = {increaseMonth} />}
             />
