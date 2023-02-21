@@ -15,9 +15,6 @@ const filterOptionList = [
 ];  
 
 const ControlMenu = React.memo(({value, onChange, optionList}) => {
-    useEffect(()=>{
-        console.log("ddddd")
-    })
     return (
     <select className='ControlMenu' value={value} onChange = {(e) => onChange(e.target.value)} >
         {optionList.map((it,idx) => (
