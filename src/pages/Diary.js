@@ -49,7 +49,7 @@ const Diary = () => {
                 <section>
                     <h4> Today's Emotion</h4>
                     <div className={['diary_img_wrapper', `diary_img_wrapper_${data.emotion}`].join(" ")}>
-                        <img src={curEmotionDate.emotion_img} />
+                        <img src={curEmotionDate.emotion_img} alt = "Emotion" />
                         <div className='emotion_descript'>
                             {curEmotionDate.emotion_descript}
                         </div>
