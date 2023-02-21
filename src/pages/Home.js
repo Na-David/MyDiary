@@ -13,6 +13,11 @@ const Home = () => {
     const [curdate, setCurDate] = useState(new Date());
     const headText = `${ curdate.getMonth() + 1 } ${curdate.getFullYear()}`;
 
+    useEffect (() => {
+        const titleElement = document.getElementsByTagName('title')[0];
+        titleElement.innerHTML = `My Diary`
+    },[])
+
     useEffect(() => {
         if (diaryList.length >= 1) {
         
