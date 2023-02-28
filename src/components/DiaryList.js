@@ -50,10 +50,9 @@ const DiaryList = ({diaryList}) => {
         };
 
         const copyList = JSON.parse(JSON.stringify(diaryList));
-
         const filteredList = filter === "all" ? copyList : copyList.filter((it) => filterCallBack(it));
-        
         const sortedList = filteredList.sort(compare);
+
         return sortedList;
     };
 
@@ -87,8 +86,6 @@ const DiaryList = ({diaryList}) => {
     );
 };
 
-DiaryList.defaultProps = {
-    diaryList : []
-};
+DiaryList.defaultProps = { diaryList : [] };
 
 export default DiaryList;
