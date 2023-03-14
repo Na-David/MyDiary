@@ -14,7 +14,7 @@ const DiaryEditor = ({isEdit, originData}) => {
 
     const contentRef = useRef();
     const [content, setContent] = useState(" ");
-    const [emotion, setEmotion] = useState(3);
+    const [emotion, setEmotion] = useState(1);
     const [date, setDate] = useState(getStringDate(new Date()));
     const navigate = useNavigate();
 

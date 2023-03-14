@@ -64,7 +64,6 @@ const Diary = () => {
             </article>
         </div>
     )}
-
 }
 
 export default Diary;

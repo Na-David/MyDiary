@@ -29,7 +29,6 @@ const Edit = () => {
         }
     },[id, diaryList])
 
-
     return (
     <div>
         {originData && <DiaryEditor isEdit = {true} originData = {originData} />}
