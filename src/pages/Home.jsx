@@ -1,8 +1,8 @@
 import { useState, useContext, useEffect } from "react";
 
-import MyHeader from './../components/MyHeader';
-import MyButton from './../components/MyButton';
-import DiaryList from './../components/DiaryList';
+import MyHeader from '../components/MyHeader';
+import MyButton from '../components/MyButton';
+import DiaryList from '../components/DiaryList';
 import { DiaryStateContext } from "../App";
 
 const Home = () => {
